@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The cost of a film</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <a href="/index.html" class="btn btn-secondary mb-3">Back to Home</a>
+        <h1>Pizzas List Template</h1>
+        <div id="pizzas-container">
+            <ul id="pizzas-list" class="list-group">
+                <!-- pizza items will be inserted here by JavaScript -->
+            </ul>
+        </div>
+    </div>
+    <!-- Custom JS to import and render films -->
+    <script type="module">
+        import { transformation as pizzas } from './transform.mjs';
+
+        const pizzasContainer = document.getElementById('pizzas-container');
+        const pizzasList = document.getElementById('films-list');
+        const headers = Object.keys(pizzas[0]);
+        const filmTemplate = `
+            <ul class="list-group">
+                ${pizzas.map(pizza  => `
+                    <li class="list-group-item">
+                        ${headers.map(header => `${header}: ${pizza[header]}`).join(', ')}
+                    </li>
+                `).join('')}
+            </ul>
+        `;
+        pizzasContainer.innerHTML = filmTemplate;
+    </script>
+</body>
+</html>

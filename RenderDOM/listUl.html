@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Films List</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <a href="/index.html" class="btn btn-secondary mb-3">Back to Home</a>
+
+      <h1>Pizzas List DOM</h1>
+        <div id="pizzas-container">
+            <ul id="pizzas-list" class="list-group">
+                <!-- pizza items will be inserted here by JavaScript -->
+            </ul>
+        </div>
+
+    </div>
+    <!-- Custom JS to import and render films -->
+    <script type="module">
+      import { transformation as pizzas } from "./transform.mjs";
+
+      const pizzasList = document.getElementById("pizzas-list");
+
+      pizzas.forEach((pizza) => {
+        const listItem = document.createElement("li");
+        listItem.className = "list-group-item";
+        listItem.innerHTML = `Name: ${pizza.name} - Ingredients: ${pizza.ingredients}`;
+        pizzasList.appendChild(listItem);
+      });
+    </script>
+  </body>
+</html>
